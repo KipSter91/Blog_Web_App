@@ -8,9 +8,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
-const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
-const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
+const homeStartingContent = "Welcome to my blog website! This platform is designed to provide a space for you to share your thoughts and ideas through blog posts. Whether you're an experienced writer or just getting started, this website is the perfect place to express yourself and engage in meaningful conversations with others. With easy-to-use features and a clean, user-friendly interface, you'll have everything you need to get started right away. So why wait? Start sharing your stories with the world!";
+const aboutContent = "I am a full-stack web developer with a strong interest in machine learning and artificial intelligence, specializing in Python's TensorFlow library. After completing my IT studies in Hungary, I began my career as a saw machine operator at AMPCO Metal, where I progressed to the positions of team leader in 2018 and foreman in 2022. While I have excelled in the manufacturing industry, my passion for IT has remained a constant. To keep up with industry developments, I have recently undertaken extensive studies in web development and programming languages, and I am eager to explore new opportunities in this exciting field.";
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -57,29 +56,21 @@ app.get("/compose", (req, res) => {
 
 app.get("/posts/:postId", (req, res) => {
 
-  const requestedTitle = req.params.postId;
+  const requestedPostId = req.params.postId;
 
-  posts.forEach((post) => {
-    const storedTitle = post["title"];
-    const storedContent = post["content"];
+  console.log(requestedPostId);
 
-    if (_.lowerCase(storedTitle) === _.lowerCase(requestedTitle)) {
+  Post.findOne({ _id: requestedPostId })
+    .then(post => {
       res.render("post", {
-        storedTitle: storedTitle,
-        storedContent: storedContent
+        title: post.title,
+        content: post.content
       });
-    }
-
-
-
-    // else {
-    //   console.log("No match found!");
-    // }
-
-  });
-
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
-
 
 app.post("/compose", (req, res) => {
 

@@ -1,22 +1,24 @@
 <%- include('partials/header'); -%>
 
-    <h1>Home</h1>
+    <h1 class="intro">Introducion</h1>
 
-    <p>
+    <p class="intro-content">
         <%=homeStartingContent%>
     </p>
 
+   
     <% posts.forEach((post)=> { %>
 
         <h1>
-            <%=  post["title"] %>
+            <%= post["title"] %>
         </h1>
 
 
         <p>
-            <%= post["content"].substring(0,100) + " ..." %> <a href="/posts/<%= post["title"] %>" style="text-decoration: none;">Read more</a>
+            <%= post["content"].substring(0,100) + " ..." %> <a href="/posts/<%= post._id %>"
+                    style="text-decoration: none;">Read more</a>
         </p>
 
         <% }) %>
 
-<%- include('partials/footer'); -%>
+            <%- include('partials/footer'); -%>
