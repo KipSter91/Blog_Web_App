@@ -12,14 +12,9 @@
   letter-spacing: 5px;
 }
 
-h1 {
+h1, h3 {
   margin: 2% 0 1%;
 }
-
-h3 {
-    margin: 2% 0 2%;
-}
-
 .btn-outline-dark {
   background-color: #f8f9fa;
   border-radius: 25px;
@@ -74,7 +69,7 @@ h3 {
   color: #fff;
 }
 
-.profile {
+.profilePhoto {
   max-width: 150px;
   margin: 2rem 2rem 0 0;
   position: relative;
@@ -93,11 +88,14 @@ p.about {
     margin: 1rem;
 }
 .intro {
+    margin-top: 2rem;
     text-align: left;
 }
 
-.intro-contect {
- max-width: 600px;
+.intro-content {
+ margin-top: 1rem;
+ margin-bottom: 2rem;
+ text-align: left;
 }
 
 .facebook {
@@ -118,18 +116,17 @@ p.about {
   }
 
   h3.tech {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
 
 @media only screen and (max-width: 1500px) {
   p.about {
     position: relative;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .profile {
+  .profilePhoto {
     display: block;
+    margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -139,4 +136,18 @@ p.about {
     position: relative;
     display: block;
   }
+  .aboutTitle, .logos, h3, p.about {
+    text-align: center;
+  }
+
+  .aboutTitle {
+    margin-top: 1rem;
+  }
+
+  .composeTitle {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .intro {
+    margin-top: 1rem;
 }
